@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "fields": [
+    {
+      "field": "CLIENT_KEY",
+      "displayName": "Crowdstrike Falcon Client Key",
+      "type": "String",
+      "minLength": 3,
+      "maxLength": 80,
+      "required": true,
+      "description": "Falcon Client Key for Authentication",
+      "example": "AKIAIOSFODNN7EXAMPLE",
+      "helpSection": "When logged into the Falcon UI, navigate to Support > API Clients and Keys. From there you can view existing clients, add new API clients, or view the audit log. When you click “Add new API Client” you will be prompted to give a descriptive name and select the appropriate API scopes. After you click save, you will be presented with the Client ID and Client Secret. "
+    },
+    {
+      "field": "CLIENT_SECRET",
+      "displayName": "Crowdstrike Falcon Client Secret",
+      "type": "String",
+      "minLength": 10,
+      "maxLength": 80,
+      "required": true,
+      "description": "Falcon Client Secret for Authentication",
+      "example": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+      "helpSection": "When logged into the Falcon UI, navigate to Support > API Clients and Keys. From there you can view existing clients, add new API clients, or view the audit log. When you click “Add new API Client” you will be prompted to give a descriptive name and select the appropriate API scopes. After you click save, you will be presented with the Client ID and Client Secret. "
+    }
+  ]
+}

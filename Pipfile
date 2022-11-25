@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "~=2.27.1"
+uvicorn = "~=0.17.6"
+fastapi = "~=0.65.2"
+python-multipart = "~=0.0.5"
+tenacity = "~=6.1.0"
+pydantic = "~=1.4"
+schema = "*"
+prometheus_fastapi_instrumentator = "~=5.8.1"
+crowdstrike-falconpy = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
