@@ -20,9 +20,12 @@ falcon = Detects(client_id=settings.CLIENT_ID, client_secret=settings.CLIENT_SEC
 def list_detections(search_filter: Optional[str] = None, limit: Optional[int] = 10) -> Any:
     """
     List all detections. Results can be customized by passing a FQL filter.
+
     Filters can be provided using the -f argument, allowing you to reduce the number of results returned and filter down to just the records of interest to you.
-    Will not work -> device.hostname:*'*search-string*'
-    Will work -> "device.hostname:*'*search-string*'"
+
+    **Will not work** -> device.hostname:\\*\'*search-string\\*\'
+
+    **Will work** -> "device.hostname:\\*\'*search-string\\*\'"
     """
     if falcon.token_fail_reason:
         return JSONResponse(status_code=400, content=str(falcon.token_fail_reason))
@@ -49,6 +52,7 @@ def list_detections(search_filter: Optional[str] = None, limit: Optional[int] = 
 def get_detection_by_id(detection_id: str) -> Any:
     """
     Get detection by a single id. Multiple IDs can be specified by delimiting with comma (ID1,ID2,ID3).
+
     A maximum of 20 IDs may be specified in this manner.
     """
     if falcon.token_fail_reason:
@@ -172,7 +176,7 @@ def get_detect_summary(id_list: str) -> Any:
         return JSONResponse(status_code=400, content=str(e))
 
 
-@router.get("/update-detects-by-ids", response_model=List[Any])
+@router.post("/update-detects-by-ids", response_model=List[Any])
 def update_detects_by_ids(id_list: str, status: str) -> Any:
     """
     Update the detection to the provided status.
