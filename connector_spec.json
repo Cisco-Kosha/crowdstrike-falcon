@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "fields": [
     {
-      "field": "CLIENT_KEY",
+      "field": "CLIENT_ID",
       "displayName": "Crowdstrike Falcon Client Key",
       "type": "String",
       "minLength": 3,

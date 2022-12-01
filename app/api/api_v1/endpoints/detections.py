@@ -14,9 +14,10 @@ router = APIRouter()
 settings = Settings()
 
 falcon = Detects(client_id=settings.CLIENT_ID, client_secret=settings.CLIENT_SECRET)
+print(falcon.authenticated())
 
 
-@router.get("/detections", response_model=List[Any], responses={200: {"model": List[Any]}, 400: {"model": exception.HTTPError}})
+@router.get("/", response_model=List[Any], responses={200: {"model": List[Any]}, 400: {"model": exception.HTTPError}})
 def list_detections(search_filter: Optional[str] = None, limit: Optional[int] = 10) -> Any:
     """
     List all detections. Results can be customized by passing a FQL filter.
@@ -28,6 +29,7 @@ def list_detections(search_filter: Optional[str] = None, limit: Optional[int] = 
     **Will work** -> "device.hostname:\\*\'*search-string\\*\'"
     """
     if falcon.token_fail_reason:
+        print(str(falcon.token_fail_reason))
         raise HTTPException(status_code=400, detail=str(falcon.token_fail_reason))
     try:
         res = falcon.query_detects(filter=search_filter, limit=limit)
@@ -48,7 +50,8 @@ def list_detections(search_filter: Optional[str] = None, limit: Optional[int] = 
         raise HTTPException(status_code=400, detail=str(e))
 
 
-@router.get("/detections/{detection_id}", response_model=List[Any], responses={200: {"model": List[Any]}, 400: {"model": exception.HTTPError}})
+@router.get("/{detection_id}", response_model=List[Any], responses={200: {"model": List[Any]}, 400: {"model": exception.HTTPError},
+            404: {"model": exception.HTTPError}})
 def get_detection_by_id(detection_id: str) -> Any:
     """
     Get detection by a single id. Multiple IDs can be specified by delimiting with comma (ID1,ID2,ID3).
@@ -56,6 +59,7 @@ def get_detection_by_id(detection_id: str) -> Any:
     A maximum of 20 IDs may be specified in this manner.
     """
     if falcon.token_fail_reason:
+        print(str(falcon.token_fail_reason))
         raise HTTPException(status_code=400, detail=str(falcon.token_fail_reason))
     try:
         filter_string = helper.create_id_filter(detection_id)
@@ -105,6 +109,7 @@ def get_aggregate_detects() -> Any:
     Get detect aggregates as specified via json in request body.
     """
     if falcon.token_fail_reason:
+        print(str(falcon.token_fail_reason))
         raise HTTPException(status_code=400, detail=str(falcon.token_fail_reason))
     try:
         date_range = {
@@ -182,6 +187,7 @@ def update_detects_by_ids(id_list: str, status: str) -> Any:
     Update the detection to the provided status.
     """
     if falcon.token_fail_reason:
+        print(str(falcon.token_fail_reason))
         raise HTTPException(status_code=400, detail=str(falcon.token_fail_reason))
     try:
         filter_string = helper.create_id_filter(id_list)
