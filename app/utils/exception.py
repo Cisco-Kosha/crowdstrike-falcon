@@ -1,12 +1,16 @@
 # define Python user-defined exceptions
+from pydantic import BaseModel
+
+
 class Error(Exception):
     """Base class for other exceptions"""
     pass
 
 
-class NoSuchBucketExists(Error):
-    pass
+class HTTPError(BaseModel):
+    detail: str
 
-
-class NoSuchFileExists(Error):
-    pass
+    class Config:
+        schema_extra = {
+            "example": {"detail": "HTTPException raised."},
+        }
