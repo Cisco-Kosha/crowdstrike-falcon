@@ -1,34 +1,21 @@
-# Kosha Crowdstrike Falcon Connector
+# Kosha CrowdStrike Falcon Connector
 
-Crowdstrike Falcon can be used to help you improve your incident response operations by standardizing and streamlining your processes
+Crowdstrike Falcon is a cybersecurity platform that provides advanced endpoint security, threat intelligence, and real-time monitoring capabilities to help you protect your systems and networks from malicious threats.
 
-![Crowdstrike Falcon](images/cs-logo.png)
+The Kosha CrowdStrike Falcon connector enables you to perform REST API operations from the CrowdStrike Falcon API in your Kosha workflow or custom application. 
 
-This Connector API exposes REST API endpoints to perform any operations on Falcon SDK in a simple, quick and intuitive fashion.
+Using the CrowdStrike Falcon connector, you can directly access the CrowdStrike platform to list and update detections.
 
-It describes various API operations, related request and response structures, and error codes. 
+Refer to the Kosha CrowdStrike Falcon connector [API specification](openapi.json) for details.
 
-## Build
+## Authentication
 
-To start the virtualenv of the project, run
-```
-    pipenv shell
-```
+To authenticate when provisioning the Kosha CrowdStrike Falcon connector, you need your:
 
-To install dependencies, run
-```
-    pipenv install
-```
+* Client ID
+* Client secret
 
-## Run
+## Kosha Connector Open Source Development
+All connectors Kosha shares on the marketplace are open source. We believe in fostering collaboration and open development. Everyone is welcome to contribute their ideas, improvements, and feedback for any Kosha connector. We encourage community engagement and appreciate any contributions that align with our goals of an open and collaborative API management platform.
 
-To run the project, simply provide env variables crowdstrike account credentials such as client key, client secret to connect to.
-
-
-```bash
-CLIENT_ID=<CLIENT_ID> CLIENT_SECRET=<CLIENT_SECRET>  uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8002
-```
-
-This will start a worker and expose the API on port `8002` on the host machine 
-
-Swagger docs is available at `https://localhost:8002/docs`
+Refer to the contribution guidelines for details.
